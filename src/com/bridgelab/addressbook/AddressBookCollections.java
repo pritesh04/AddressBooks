@@ -51,9 +51,9 @@ public class AddressBookCollections {
 	public void countPersons() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter State Name");
-		String state = sc.nextLine();
+		String stateName = sc.nextLine();
 
-		list.stream().filter(n -> n.equals(state)).forEach(System.out::println);
+		System.out.println(list.stream().filter(n -> n.state.equals(stateName)).count());
 //		int count = 0;
 //		for (int i = 0; i < list.size(); i++) {
 //			if (state.equals(list.get(i).state)) {
