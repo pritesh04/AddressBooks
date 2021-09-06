@@ -71,16 +71,16 @@ public class AddressBookCollections {
 		System.out.println("Enter State Name");
 		String state = sc.nextLine();
 
-		list.stream().filter(n -> n.equals(state)).forEach(System.out::println);
-//		int count = 0;
-//		for (int i = 0; i < list.size(); i++) {
-//			if (state.equals(list.get(i).state)) {
-//				count++;
-//
-//			}
-//
-//		}
-//		System.out.println(count);
+		//list.stream().filter(n -> n.equals(state)).forEach(System.out::println);
+		int count = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (state.equals(list.get(i).state)) {
+				count++;
+
+			}
+
+		}
+		System.out.println(count);
 	}
 
 	public boolean checkDuplicate(String firstname) {
