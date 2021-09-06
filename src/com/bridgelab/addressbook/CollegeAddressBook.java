@@ -30,6 +30,14 @@ public class CollegeAddressBook {
 		this.email = email;
 	}
 
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
 	public String getCity() {
 		return city;
 	}
@@ -40,6 +48,14 @@ public class CollegeAddressBook {
 
 	public String getState() {
 		return state;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public void setState(String state) {
