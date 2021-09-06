@@ -30,7 +30,7 @@ public class AddressBookRunner {
 				book.searchState();
 				break;
 			case 6:
-				//book.viewPersons();
+				book.viewPersons();
 				break;
 			case 7:
 				book.countPersons();

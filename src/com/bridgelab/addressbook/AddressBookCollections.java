@@ -23,7 +23,7 @@ public class AddressBookCollections {
 //				System.out.println(list.get(i).firstName);
 //			}
 //		}
-		
+
 		list.stream().filter(p -> p.getCity().equals(city)).collect(Collectors.toList());
 		list.forEach(System.out::println);
 	}
@@ -40,6 +40,29 @@ public class AddressBookCollections {
 //	}
 		list.stream().filter(p -> p.getState().equals(state)).collect(Collectors.toList());
 		list.forEach(System.out::println);
+
+	}
+
+	public void viewPersons() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("For City press 1 and  for state press 2");
+		int response = sc.nextInt();
+		switch (response) {
+		case 1:
+			System.out.println("Enter state ");
+			String state = sc.nextLine();
+			list.stream().filter(p -> p.equals(state)).collect(Collectors.toList());
+			list.forEach(System.out::println);
+			break;
+		case 2:
+			System.out.println("Enter city ");
+			String city = sc.nextLine();
+			list.stream().filter(p -> p.equals(city)).collect(Collectors.toList());
+			list.forEach(System.out::println);
+			break;
+		default:
+			System.out.println("Wrong input");
+		}
 
 	}
 
@@ -60,7 +83,6 @@ public class AddressBookCollections {
 //		System.out.println(count);
 	}
 
-	
 	public boolean checkDuplicate(String firstname) {
 
 		for (int i = 0; i < list.size(); i++) {
