@@ -17,12 +17,15 @@ public class AddressBookCollections {
 		System.out.println("Enter City: ");
 		String city = sc.nextLine();
 
-		for (int i = 0; i < list.size(); i++) {
-
-			if (city.equals(list.get(i).city)) {
-				System.out.println(list.get(i).firstName);
-			}
-		}
+//		for (int i = 0; i < list.size(); i++) {
+//
+//			if (city.equals(list.get(i).city)) {
+//				System.out.println(list.get(i).firstName);
+//			}
+//		}
+		
+		list.stream().filter(p -> p.getCity().equals(city)).collect(Collectors.toList());
+		list.forEach(System.out::println);
 	}
 
 	public void searchState() {
@@ -30,11 +33,13 @@ public class AddressBookCollections {
 		System.out.println("Enter state: ");
 		String state = sc.nextLine();
 
-		for (int i = 0; i < list.size(); i++) {
-			if (state.equals(list.get(i).state)) {
-				System.out.println(list.get(i).firstName);
-			}
-		}
+//		for (int i = 0; i < list.size(); i++) {
+//			if (state.equals(list.get(i).state)) {
+//				System.out.println(list.get(i).firstName);
+//		}
+//	}
+		list.stream().filter(p -> p.getState().equals(state)).collect(Collectors.toList());
+		list.forEach(System.out::println);
 
 	}
 
