@@ -18,6 +18,8 @@ import java.util.Scanner;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.opencsv.CSVWriter;
+
 public class AddressBookCollections {
 
 	public int i = 0;
@@ -201,21 +203,45 @@ public class AddressBookCollections {
 		}
 	}
 
-	public void writeDataInFile() throws IOException{
+	public void writeDataInFile() throws IOException {
 
-		
-		    ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("F:\\PRITESH\\text.txt"));
-		    fos.writeObject(list);
+		ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("F:\\PRITESH\\text.txt"));
+		fos.writeObject(list);
 		System.out.println("Written Succesfully");
+		fos.close();
 	}
-	
-	public void readDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException
-	{
-		ObjectInputStream is= new ObjectInputStream(new FileInputStream("F:\\PRITESH\\text.txt"));
-		List<CollegeAddressBook> book= (List<CollegeAddressBook>) is.readObject();
+
+	public void readDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream is = new ObjectInputStream(new FileInputStream("F:\\PRITESH\\text.txt"));
+		List<CollegeAddressBook> book = (List<CollegeAddressBook>) is.readObject();
 		for (int i = 0; i < book.size(); i++) {
 			System.out.println(book);
 		}
-		
+		is.close();
+
 	}
+
+	private void writeAllExample() throws IOException {
+		String csv = "F:\\PRITESH\\book.csv";
+		CSVWriter writer = new CSVWriter(new FileWriter(csv));
+		List<String[]> listCsv = new ArrayList<>();
+		listCsv.add(new String[] { "FirstName", "LastName", "Address", "City", "State", "ZipCode", "PhoneNumber",
+				"EmailID" });
+		for (int i = 0; i < list.size(); i++) {
+			listCsv.add(new String[] { list.get(i).firstName, list.get(i).lastName, list.get(i).address,
+					list.get(i).city, list.get(i).state, list.get(i).zip, list.get(i).phoneNumber, list.get(i).email });
+		}
+		writer.writeAll(listCsv);
+		writer.close();
+	}
+	public void readDataFromCSVFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream is = new ObjectInputStream(new FileInputStream("F:\\PRITESH\\text.txt"));
+		List<CollegeAddressBook> book = (List<CollegeAddressBook>) is.readObject();
+		for (int i = 0; i < book.size(); i++) {
+			System.out.println(book);
+		}
+		is.close();
+
+	}
+
 }
