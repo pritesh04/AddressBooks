@@ -1,6 +1,8 @@
 package com.bridgelab.addressbook;
 
-public class CollegeAddressBook {
+import java.io.Serializable;
+
+public class CollegeAddressBook implements Serializable {
 
 	public String firstName;
 	public String lastName;

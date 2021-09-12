@@ -1,5 +1,15 @@
 package com.bridgelab.addressbook;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -16,7 +26,7 @@ public class AddressBookCollections {
 	public void searchCity() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter name");
-		String name= sc.next();
+		String name = sc.next();
 		System.out.println("Enter City: ");
 		String city = sc.nextLine();
 
@@ -34,7 +44,7 @@ public class AddressBookCollections {
 	public void searchState() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter name");
-		String name= sc.next();
+		String name = sc.next();
 		System.out.println("Enter state: ");
 		String state = sc.nextLine();
 
@@ -79,7 +89,7 @@ public class AddressBookCollections {
 		return true;
 	}
 
-	public void addContact() {
+	public void addContact() throws IOException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter number of entries: ");
 		int record = sc.nextInt();
@@ -107,6 +117,7 @@ public class AddressBookCollections {
 						state, zipcode, phonenum, email);
 				list.add(addressBookCollections);
 				System.out.println("Contact added ");
+				this.writeDataInFile();
 			} else {
 				System.out.println("Duplicate found");
 			}
@@ -115,11 +126,11 @@ public class AddressBookCollections {
 
 	public void showContact() {
 		list.stream().forEach(System.out::println);
+	}
 //		Iterator<ContactAddressBook> itr = list.iterator();
 //		while (itr.hasNext()) {
 //			System.out.println(itr.next());
 //		}
-	}
 
 	public void viewPersons() {
 		Scanner sc = new Scanner(System.in);
@@ -143,10 +154,10 @@ public class AddressBookCollections {
 		}
 
 	}
-	public void sortByNames()
-	{
-		List<CollegeAddressBook> namesList = list.stream().sorted(Comparator.comparing(CollegeAddressBook::getFirstName))
-				.collect(Collectors.toList());
+
+	public void sortByNames() {
+		List<CollegeAddressBook> namesList = list.stream()
+				.sorted(Comparator.comparing(CollegeAddressBook::getFirstName)).collect(Collectors.toList());
 		namesList.forEach(System.out::println);
 	}
 
@@ -190,4 +201,21 @@ public class AddressBookCollections {
 		}
 	}
 
+	public void writeDataInFile() throws IOException{
+
+		
+		    ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("F:\\PRITESH\\text.txt"));
+		    fos.writeObject(list);
+		System.out.println("Written Succesfully");
+	}
+	
+	public void readDataFromFile() throws FileNotFoundException, IOException, ClassNotFoundException
+	{
+		ObjectInputStream is= new ObjectInputStream(new FileInputStream("F:\\PRITESH\\text.txt"));
+		List<CollegeAddressBook> book= (List<CollegeAddressBook>) is.readObject();
+		for (int i = 0; i < book.size(); i++) {
+			System.out.println(book);
+		}
+		
+	}
 }
