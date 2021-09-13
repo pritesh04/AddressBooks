@@ -14,7 +14,7 @@ public class AddressBookRunner {
 			System.out.println("Enter Choice: ");
 			System.out.println("1. Add Contact , 2. Delete Contact , 3. Show Contacts , "
 					+ "4. Search By City  , 5. Search By State ,  6. View Persons "
-					+ " ,7. Count Persons,   8.sort by parameters 9.Sort by names 10 .Reading Data");
+					+ " ,7. Count Persons,   8.sort by parameters 9.Sort by names 10 .Reading Data 11.Write using Json 12.Read from Json");
 			int choice = sc.nextInt();
 			switch (choice) {
 			case 1:
@@ -46,6 +46,13 @@ public class AddressBookRunner {
 				break;
 			case 10:
 				book.readDataFromFile();
+				break;
+			case 11:
+				book.writeDataInFileUsingJson();
+				break;
+			case 12:
+				book.readDataFromJsonFile();
+				break;
 			default:
 				System.out.println("Enter Correct Choice");
 				break;

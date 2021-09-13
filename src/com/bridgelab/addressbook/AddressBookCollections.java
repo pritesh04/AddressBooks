@@ -18,6 +18,7 @@ import java.util.Scanner;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
 import com.opencsv.CSVWriter;
 
 public class AddressBookCollections {
@@ -233,13 +234,39 @@ public class AddressBookCollections {
 		}
 		writer.writeAll(listCsv);
 		writer.close();
+
 	}
+
 	public void readDataFromCSVFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream is = new ObjectInputStream(new FileInputStream("F:\\PRITESH\\text.txt"));
 		List<CollegeAddressBook> book = (List<CollegeAddressBook>) is.readObject();
 		for (int i = 0; i < book.size(); i++) {
 			System.out.println(book);
 		}
+
+		is.close();
+
+	}
+
+	public void writeDataInFileUsingJson() throws IOException {
+		Gson gson = new Gson();
+		List<String> jsonList = new ArrayList<String>();
+		for (int i = 0; i < list.size(); i++) {
+			jsonList.add(gson.toJson(list.get(i)));
+		}
+		ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream("F:\\PRITESH\\abc.json"));
+		fos.writeObject(jsonList);
+		System.out.println("Written Succesfully");
+		fos.close();
+	}
+
+	public void readDataFromJsonFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream is = new ObjectInputStream(new FileInputStream("F:\\PRITESH\\abc.json"));
+		List<CollegeAddressBook> book = (List<CollegeAddressBook>) is.readObject();
+		for (int i = 0; i < book.size(); i++) {
+			System.out.println(book);
+		}
+
 		is.close();
 
 	}
